@@ -25,7 +25,7 @@ SECRET_KEY = '$sgg-7!bii3k-sz*j60=v1*!i1ppt+fdi9pem-y%f8&am-pncs'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'social_django',
     'tuauth',
     'example_app',
+    'smalllibrary'
 ]
 
 MIDDLEWARE = [
