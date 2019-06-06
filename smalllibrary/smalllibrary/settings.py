@@ -41,7 +41,11 @@ INSTALLED_APPS = [
     'tuauth',
     'example_app',
 <<<<<<< HEAD
+<<<<<<< HEAD
     'smalllibrary'
+=======
+    'smalllibrary',
+>>>>>>> master
 =======
     'smalllibrary',
 >>>>>>> master
