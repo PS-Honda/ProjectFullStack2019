@@ -1,0 +1,85 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/css/uikit.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/js/uikit-icons.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Overpass+Mono&display=swap" rel="stylesheet">
+    <title>TU Library</title>
+    <style>
+        body{font-family: 'Overpass Mono', monospace;}
+    </style>
+    <script type="text/javascript">
+    function manageBindding(e){
+        //alert(e.target.id);
+        if(setDefaultView()) {
+            document.getElementById("bindding_view").style.display = "block";
+        }
+        
+        
+    }
+    function setDefaultView(){
+        document.getElementById("bindding_view").style.display = "none";
+        document.getElementById("pubilsher_view").style.display = "none";
+        document.getElementById("book_view").style.display = "none";
+        document.getElementById("borrow_view").style.display = "none";
+        document.getElementById("transaction_view").style.display = "none";;
+        return true;
+    }
+    </script>   
+</head>
+<body>
+    <header>
+        <nav class="uk-navbar-container" uk-navbar style="background-color:rgb(230, 169, 126); " >
+            <div class="uk-navbar-center">
+                <ul class="uk-navbar-nav">
+                    <li class="uk-active">
+                        <a href="#" onclick="manageBindding(event)" id="bindding"> จัดการชนิดหนังสือ</a>
+                     </li>
+                     <li class="uk-active">
+                        <a href="#" onclick="managePubilsher(event)" id="pubilsher"> จัดการสำนักพิมพ์</a>
+                    </li>
+                    <li class="uk-active">
+                        <a href="#" onclick="manageBook(event)" id="book"> จัดการหนังสือ</a>
+                    </li>
+                    <li class="uk-active">
+                        <a href="#" onclick="manageBorrow(event)" id="borrow"> รายการยืม</a>
+                    </li>
+                    <li class="uk-active">
+                        <a href="#" onclick="manageTransaction(event)" id="transaction"> บันทึกการทำรายการ</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid id="bindding_view" hidden> 
+        <div>
+            <div class="uk-card uk-card-default uk-card-body">1</div>
+        </div>  
+    </div>
+    <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid  id="pubilsher_view" hidden>
+        <div>
+            <div class="uk-card uk-card-default uk-card-body">2</div>
+        </div>  
+    </div>
+    <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid id="book_view" hidden>
+        <div>
+            <div class="uk-card uk-card-default uk-card-body">3</div>
+        </div>  
+    </div>
+    <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid id="borrow_view" hidden>
+        <div>
+            <div class="uk-card uk-card-default uk-card-body">4</div>
+        </div>  
+    </div>
+    <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid id="transaction_view">
+        <div>
+            <div class="uk-card uk-card-default uk-card-body">5</div>
+        </div>  
+    </div>
+</body>
+</html>
