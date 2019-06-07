@@ -22,7 +22,7 @@ class Book(models.Model) :
     bindding = models.ForeignKey(Bindding,on_delete=models.PROTECT)
     year = models.PositiveSmallIntegerField()
     pubilsher = models.ForeignKey(Pubilsher,on_delete=models.PROTECT)
-    borrow_status = models.BooleanField()
+    borrow_status = models.BooleanField(default=True)
     def __str__ (self):
         return self.title 
 

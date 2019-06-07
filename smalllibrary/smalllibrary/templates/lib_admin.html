@@ -57,7 +57,12 @@
     function delBind(id){
         let thisId = id;
         if (confirm("คุณต้องการลบข้อมูลนี้"))
-            $.ajax({type:'POST',url:'',data:{pk:id,type:'delete'},success : function(){alert('ลบข้อมูลสำเร็จ'); window.location.href = 'http://127.0.0.1:8000/lib_admin';}});
+            $.ajax({type:'POST',url:'',data:{pk:id,type:'delete',cmd:'binddings'},success : function(){alert('ลบข้อมูลสำเร็จ'); window.location.href = 'http://127.0.0.1:8000/lib_admin';}});
+    }
+    function delPub(id){
+        let thisId = id;
+        if (confirm("คุณต้องการลบข้อมูลนี้"))
+            $.ajax({type:'POST',url:'',data:{pk:id,type:'delete',cmd:'pubilsher'},success : function(){alert('ลบข้อมูลสำเร็จ'); window.location.href = 'http://127.0.0.1:8000/lib_admin';}});
     }
     </script>   
 </head>
@@ -127,53 +132,125 @@
     <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid  id="pubilsher_view" style="display : none;">
             <h3>จัดการสำหนักพิมพ์</h3>
         <div>
-                <div class="uk-navbar-container  ">
-                        <div class="uk-card uk-card-default uk-card-body ">
-                            <table class="uk-table uk-table-striped uk-table-hover">
-                                <thead class="uk-text-center" >
+            <div class="uk-navbar-container  ">
+                    <div class="uk-card uk-card-default uk-card-body ">
+                        <table class="uk-table uk-table-striped uk-table-hover">
+                            <thead class="uk-text-center" >
+                                <tr>
+                                    <th  class="uk-text-center" width="30%">ID</th>
+                                    <th   class="uk-text-center" width="40%">ชื่อสำนักพิมพ์</th>
+                                    <th  class="uk-text-center" width="30%">ตัวดำเนินการ</th>
+                                </tr>
+                            </thead>
+                            <tbody  class="uk-text-center">
+                                <form method="POST" action="" >
+                                    <input type="text" name="type"  value="post" hidden>
+                                    <input type="text" name="cmd"  value="pubilsher" hidden>
                                     <tr>
-                                        <th  class="uk-text-center" width="30%">ID</th>
-                                        <th   class="uk-text-center" width="40%">ชื่อสำนักพิมพ์</th>
-                                        <th  class="uk-text-center" width="30%">ตัวดำเนินการ</th>
+                                        {% csrf_token %}
+                                        <td> ID is Auto Increatment  </td>
+                                        <td><input name="name" class="uk-input uk-form-success uk-form-width-medium " size="32" required></td>
+                                        <td><button type="submit" class="uk-button uk-button-primary">เพิ่ม</button></td>
                                     </tr>
-                                </thead>
-                                <tbody  class="uk-text-center">
-                                    <form method="POST" action="" >
-                                        <input type="text" name="type"  value="post" hidden>
-                                        <input type="text" name="cmd"  value="pubilsher" hidden>
-                                        <tr>
-                                            {% csrf_token %}
-                                            <td> ID is Auto Increatment  </td>
-                                            <td><input name="name" class="uk-input uk-form-success uk-form-width-medium " size="32" required></td>
-                                            <td><button type="submit" class="uk-button uk-button-primary">เพิ่ม</button></td>
-                                        </tr>
-                                    </tbody>
-                                    </form>
-                                    {% for pub in pubilsher %}
-                                    <tr>
-                                        <td>{{ pub.id }}</td>
-                                        <td>{{ pub.name }}</td>
-                                        <td>
-                                            <button type="button" class="uk-button uk-button-danger" onclick="delPub('{{ pub.id }}')" >ลบ</button>
-                                        </td>
-                                    </tr>
-                                    {% endfor %}
                                 </tbody>
-                            </table>
-                        </div>
-                    </div>  
+                                </form>
+                                {% for pub in pubilsher %}
+                                <tr>
+                                    <td>{{ pub.id }}</td>
+                                    <td>{{ pub.name }}</td>
+                                    <td>
+                                        <button type="button" class="uk-button uk-button-danger" onclick="delPub('{{ pub.id }}')" >ลบ</button>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>  
         </div>  
     </div>
     <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid id="book_view" style="display : none;">
             <h3>จัดการหนังสือ</h3>
         <div>
-            <div class="uk-card uk-card-default uk-card-body">3</div>
+        <div class="uk-navbar-container  ">
+                <div class="uk-card uk-card-default uk-card-body ">
+                    <table class="uk-table uk-table-striped uk-table-hover">
+                        <thead class="uk-text-center" >
+                        <tr>
+                            <th  class="uk-text-center"    width="10%">ID</th>
+                            <th   class="uk-text-center" width="20%" >ชื่อหนังสือ</th>
+                            <th   class="uk-text-center" width="10%" >ภาพปก</th>
+                            <th  class="uk-text-center" width="7%" >ISBN_10</th>
+                            <th  class="uk-text-center" width="20%" >ผู้แต่ง</th>
+                            <th  class="uk-text-center" width="10%" >ชนิดหนังสือ</th>
+                            <th  class="uk-text-center" width="5%" >ปีที่พิมพ์</th>
+                            <th  class="uk-text-center" width="10%" >สำนักพิมพ์</th>
+                            <th  class="uk-text-center" width="8%">สถานนะ</th>
+                            <th  class="uk-text-center" width="5%">ตัวดำเนินการ</th>
+                        </tr>
+                    </thead>
+                    <tbody  class="uk-text-center">
+                        <form method="POST" action="" >
+                            <input type="text" name="type"  value="post" hidden>
+                            <input type="text" name="cmd"  value="pubilsher" hidden>
+                                <tr>
+                                {% csrf_token %}
+                                <td> ID is Auto Increatment  </td>
+                                <td><input name="title" class="uk-input uk-form-success uk-form-width-small " size="32" required></td>
+                                <td>
+                                    <button type="button" class="uk-button-primary">เลือกปก</button>
+                                    <input type="file" name="cover" class="uk-form-success uk-form-width-small " size="32" required>
+                                </td>
+                                <td><input name="isbn_10" class="uk-input uk-form-success uk-form-width-small " size="32" required></td>
+                                <td><input name="author" class="uk-input uk-form-success uk-form-width-small " size="32" required></td>
+                                <td>                      
+                                    <select name="pubilsher" class="uk-select uk-form-success uk-form-width-small " required>
+                                        <option value="">เลือกชนิดหนังสือ</option>
+                                        {% for item in binddings  %}
+                                        <option value="{{ item.id}}"> {{ item.name}} </option>
+                                        {% endfor %}
+                                    </select>
+                                </td>
+                                <td><input name="year" class="uk-input uk-form-success uk-form-width-small " size="32" required></td>
+                                <td>
+                                    <select name="pubilsher" class="uk-select uk-form-success uk-form-width-small " required>
+                                        <option value="">เลือกสำนักพิมพ์</option>
+                                        {% for item in pubilsher  %}
+                                        <option value="{{ item.id}}"> {{ item.name}} </option>
+                                        {% endfor %}
+                                    </select>
+                                </td>   
+                                <td></td>
+                                <td><button type="submit" class="uk-button uk-button-primary">เพิ่ม</button></td>
+                                </tr>
+                            </tbody>
+                            </form>
+                                {% for books in book %}
+                            <tr>
+                                <td>{{ books.id }}</td>
+                                <td>{{ books.title }}</td>
+                                <td>{{ books.cover }}</td>
+                                <td>{{ books.isbn_10 }}</td>
+                                <td>{{ books.author }}</td>
+                                <td>{{ books.bindding }}</td>
+                                <td>{{ books.year }}</td>
+                                <td>{{ books.pubilsher }}</td>
+                                <td>{{ books.borrow_status }}</td>
+                                <td>
+                                    <button type="button" class="uk-button uk-button-danger" onclick="delBook('{{ books.id }}')" >ลบ</button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>  
         </div>  
     </div>
     <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid id="borrow_view" style="display : none;" >
             <h3>จัดการรายการยืม</h3>
         <div>
-            <div class="uk-card uk-card-default uk-card-body">4</div>
+            
         </div>  
     </div>
     <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid id="transaction_view" style="display : none;">

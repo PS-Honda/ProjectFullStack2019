@@ -16,10 +16,18 @@ def lib_admin(request) :
         data = QueryDict(request.body)
         typeMethod = data.get('type')
         action = data.get('cmd')
-        
+        pkId = data.get('pk')
         if 'delete' == typeMethod :
-            print('delete key ' ,data.get('pk'))
-            Bindding.objects.get(pk=data.get('pk')).delete()
+            if action == 'binddings' :
+                Bindding.objects.get(pk=pkId).delete()
+            elif action == 'pubilsher' :
+                Pubilsher.objects.get(pk=pkId).delete()
+            elif action == 'book' :
+                Book.objects.get(pk=pkId).delete()
+            elif action == 'borrow' : 
+                Borrow.objects.get(pk=pkId).delete()
+            print('delete key ' ,pkId)
+            
         elif 'post'== typeMethod :
             if action == 'binddings' :
                 form = BinddingForm(request.POST) 
@@ -36,9 +44,9 @@ def lib_admin(request) :
     else :
         form = BinddingForm()
 
-    context['borrowForm'] = Pubilsher.objects.all()
+    context['borrowForm'] = Borrow.objects.all()
     context['pubilsher'] = Pubilsher.objects.all()
     context['binddings'] = Bindding.objects.all()
-    context['book'] = Bindding.objects.all()
+    context['book'] = Book.objects.all()
     return render(request,'lib_admin.html',context)
 
