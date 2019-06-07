@@ -1,11 +1,7 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 from django.shortcuts import render, redirect
 def test(request):
     return render(request, 'test.html')
-=======
-=======
->>>>>>> master
+
 from django.shortcuts import render, redirect
 from .models import Bindding,Book,Borrow,Pubilsher,Transaction,User
 from .forms import BinddingForm 
@@ -23,9 +19,6 @@ def lib_admin(request) :
         
     context['binddings'] = Bindding.objects.all()
     context['form']  = form
-<<<<<<< HEAD
+
     return render(request,'lib_admin.html',context)
->>>>>>> master
-=======
-    return render(request,'lib_admin.html',context)
->>>>>>> master
+
