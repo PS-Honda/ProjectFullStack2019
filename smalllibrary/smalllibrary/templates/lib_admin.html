@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/css/uikit.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/js/uikit.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/js/uikit-icons.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Overpass+Mono&display=swap" rel="stylesheet">
     <title>TU Library</title>
     <style>
@@ -15,7 +16,7 @@
     </style>
     <script type="text/javascript">
     function manage(e){
-        alert(e.target.id);
+        //alert(e.target.id);
         let thisId = e.target.id;
         setDefaultView();
         switch (thisId) { 
@@ -36,9 +37,6 @@
                 break;
             default : alert('กรุณาเลือกรายการให้ถูกต้อง');    break;    
         }
-        
-        
-        
     }
     function setDefaultView(){
 <<<<<<< HEAD
@@ -56,9 +54,14 @@
         document.getElementById("transaction_view").style.display  = 'none';
 >>>>>>> master
     }
+    function delBind(id){
+        let thisId = id;
+        if (confirm("คุณต้องการลบข้อมูลนี้"))
+            $.ajax({type:'POST',url:'',data:{pk:id,type:'delete'},success : function(){alert('ลบข้อมูลสำเร็จ'); window.location.href = 'http://127.0.0.1:8000/lib_admin';}});
+    }
     </script>   
 </head>
-<body>
+<body onload="document.getElementById('book_view').style.display  = 'block';">
     <header>
         <nav class="uk-navbar-container" uk-navbar style="background-color:rgb(230, 169, 126); " >
             <div class="uk-navbar-center">
@@ -82,40 +85,97 @@
             </div>
         </nav>
     </header>
-<<<<<<< HEAD
-    <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid id="bindding_view" hidden> 
-=======
-    <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid  >
-        <div>
-            <div class="uk-card uk-card-default uk-card-body"><h1>จัดการชนิดหนังสือ</h1></div>
+    <br>
+    <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid id="bindding_view"  style="display : none;">
+        <h3>จัดการชนิดหนังสือ</h3>
+        <div class="uk-navbar-container  ">
+            <div class="uk-card uk-card-default uk-card-body ">
+                <table class="uk-table uk-table-striped uk-table-hover">
+                    <thead class="uk-text-center" >
+                        <tr>
+                            <th  class="uk-text-center" width="30%">ID</th>
+                            <th   class="uk-text-center" width="40%">ชื่อประเภท</th>
+                            <th  class="uk-text-center" width="30%">ตัวดำเนินการ</th>
+                        </tr>
+                    </thead>
+                    <tbody  class="uk-text-center">
+                        <form method="POST" action="" >
+                            <input type="text" name="type"  value="post" hidden>
+                            <tr>
+                                {% csrf_token %}
+                                <td> ID is Auto Increatment  </td>
+                                <td><input name="name" class="uk-input uk-form-success uk-form-width-medium " size="32" required></td>
+                                <td><button type="submit" class="uk-button uk-button-primary">เพิ่ม</button></td>
+                            </tr>
+                        </tbody>
+                        </form>
+                        {% for bind in binddings %}
+                        <tr>
+                            <td>{{ bind.id }}</td>
+                            <td>{{bind.name }}</td>
+                            <td>
+                                <button type="button" class="uk-button uk-button-danger" onclick="delBind('{{ bind.id }}')" >ลบ</button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>  
     </div>
-    <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid id="bindding_view"  style="display : none;"> 
->>>>>>> master
-        <div>
-            <div class="uk-card uk-card-default uk-card-body">1</div>
-        </div>  
-    </div>
-<<<<<<< HEAD
-    <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid  id="pubilsher_view" hidden>
-=======
     <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid  id="pubilsher_view" style="display : none;">
->>>>>>> master
+            <h3>จัดการสำหนักพิมพ์</h3>
         <div>
-            <div class="uk-card uk-card-default uk-card-body">2</div>
+                <div class="uk-navbar-container  ">
+                        <div class="uk-card uk-card-default uk-card-body ">
+                            <table class="uk-table uk-table-striped uk-table-hover">
+                                <thead class="uk-text-center" >
+                                    <tr>
+                                        <th  class="uk-text-center" width="30%">ID</th>
+                                        <th   class="uk-text-center" width="40%">ชื่อสำนักพิมพ์</th>
+                                        <th  class="uk-text-center" width="30%">ตัวดำเนินการ</th>
+                                    </tr>
+                                </thead>
+                                <tbody  class="uk-text-center">
+                                    <form method="POST" action="" >
+                                        <input type="text" name="type"  value="post" hidden>
+                                        <tr>
+                                            {% csrf_token %}
+                                            <td> ID is Auto Increatment  </td>
+                                            <td><input name="name" class="uk-input uk-form-success uk-form-width-medium " size="32" required></td>
+                                            <td><button type="submit" class="uk-button uk-button-primary">เพิ่ม</button></td>
+                                        </tr>
+                                    </tbody>
+                                    </form>
+                                    {% for pub in pubilsher %}
+                                    <tr>
+                                        <td>{{ pub.id }}</td>
+                                        <td>{{ pub.name }}</td>
+                                        <td>
+                                            <button type="button" class="uk-button uk-button-danger" onclick="delPub('{{ pub.id }}')" >ลบ</button>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>  
         </div>  
     </div>
-    <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid id="book_view">
+    <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid id="book_view" style="display : none;">
+            <h3>จัดการหนังสือ</h3>
         <div>
             <div class="uk-card uk-card-default uk-card-body">3</div>
         </div>  
     </div>
     <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid id="borrow_view" style="display : none;" >
+            <h3>จัดการรายการยืม</h3>
         <div>
             <div class="uk-card uk-card-default uk-card-body">4</div>
         </div>  
     </div>
     <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid id="transaction_view" style="display : none;">
+            <h3>แสดงรายการที่เกิด</h3>
         <div>
             <div class="uk-card uk-card-default uk-card-body">5</div>
         </div>  
