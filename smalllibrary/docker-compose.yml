@@ -1,0 +1,9 @@
+verison: '3'
+
+services:
+  python-web:
+    image : python:alpine
+    container_name : web
+    command : python -m http.server 500
+    port : 
+      - 5000:5000
