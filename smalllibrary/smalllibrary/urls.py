@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin,auth
 from django.urls import path, include
-from .views import lib_admin
+from .views import lib_admin,test
 
 
 urlpatterns = [
@@ -23,4 +23,6 @@ urlpatterns = [
     path('lib_admin/',lib_admin,name='lib_admin'),
     path('oauth/', include('social_django.urls', namespace='social')),
     path('example/', include('example_app.urls', namespace='example_app')),
+    path('test/',test,name='test'),
+    
 ]
