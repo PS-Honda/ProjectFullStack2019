@@ -40,15 +40,7 @@ INSTALLED_APPS = [
     'social_django',
     'tuauth',
     'example_app',
-<<<<<<< HEAD
-<<<<<<< HEAD
-    'smalllibrary'
-=======
     'smalllibrary',
->>>>>>> master
-=======
-    'smalllibrary',
->>>>>>> master
 ]
 
 MIDDLEWARE = [
