@@ -14,16 +14,29 @@
         body{font-family: 'Overpass Mono', monospace;}
     </style>
     <script type="text/javascript">
-    function manageBindding(e){
-        //alert(e.target.id);
-<<<<<<< HEAD
-        if(setDefaultView()) {
-            document.getElementById("bindding_view").style.display = "block";
-        }
-=======
+    function manage(e){
+        alert(e.target.id);
+        let thisId = e.target.id;
         setDefaultView();
-        document.getElementById("bindding_view").style.display  = 'block';
->>>>>>> master
+        switch (thisId) { 
+            case 'bindding' :
+                document.getElementById("bindding_view").style.display  = 'block';
+                break;
+            case 'pubilsher' :
+                document.getElementById("pubilsher_view").style.display  = 'block';
+                break;
+            case 'book' :
+                document.getElementById("book_view").style.display  = 'block';
+                break;
+            case 'borrow' :
+                document.getElementById("borrow_view").style.display  = 'block';
+                break;
+            case 'transaction' :
+                document.getElementById("transaction_view").style.display  = 'block';
+                break;
+            default : alert('กรุณาเลือกรายการให้ถูกต้อง');    break;    
+        }
+        
         
         
     }
@@ -51,19 +64,19 @@
             <div class="uk-navbar-center">
                 <ul class="uk-navbar-nav">
                     <li class="uk-active">
-                        <a href="#" onclick="manageBindding(event)" id="bindding"> จัดการชนิดหนังสือ</a>
+                        <a href="#" onclick="manage(event)" id="bindding"> จัดการชนิดหนังสือ</a>
                      </li>
                      <li class="uk-active">
-                        <a href="#" onclick="managePubilsher(event)" id="pubilsher"> จัดการสำนักพิมพ์</a>
+                        <a href="#" onclick="manage(event)" id="pubilsher"> จัดการสำนักพิมพ์</a>
                     </li>
                     <li class="uk-active">
-                        <a href="#" onclick="manageBook(event)" id="book"> จัดการหนังสือ</a>
+                        <a href="#" onclick="manage(event)" id="book"> จัดการหนังสือ</a>
                     </li>
                     <li class="uk-active">
-                        <a href="#" onclick="manageBorrow(event)" id="borrow"> รายการยืม</a>
+                        <a href="#" onclick="manage(event)" id="borrow"> รายการยืม</a>
                     </li>
                     <li class="uk-active">
-                        <a href="#" onclick="manageTransaction(event)" id="transaction"> บันทึกการทำรายการ</a>
+                        <a href="#" onclick="manage(event)" id="transaction"> บันทึกการทำรายการ</a>
                     </li>
                 </ul>
             </div>
@@ -92,25 +105,17 @@
             <div class="uk-card uk-card-default uk-card-body">2</div>
         </div>  
     </div>
-<<<<<<< HEAD
-    <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid id="book_view" hidden>
-=======
-    <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid id="book_view" style="display : none;">
->>>>>>> master
+    <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid id="book_view">
         <div>
             <div class="uk-card uk-card-default uk-card-body">3</div>
         </div>  
     </div>
-<<<<<<< HEAD
-    <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid id="borrow_view" hidden>
-=======
-    <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid id="borrow_view"style="display : none;" >
->>>>>>> master
+    <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid id="borrow_view" style="display : none;" >
         <div>
             <div class="uk-card uk-card-default uk-card-body">4</div>
         </div>  
     </div>
-    <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid id="transaction_view">
+    <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid id="transaction_view" style="display : none;">
         <div>
             <div class="uk-card uk-card-default uk-card-body">5</div>
         </div>  
