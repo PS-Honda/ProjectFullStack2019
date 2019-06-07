@@ -101,6 +101,7 @@
                     <tbody  class="uk-text-center">
                         <form method="POST" action="" >
                             <input type="text" name="type"  value="post" hidden>
+                            <input type="text" name="cmd"  value="binddings" hidden>
                             <tr>
                                 {% csrf_token %}
                                 <td> ID is Auto Increatment  </td>
@@ -112,7 +113,7 @@
                         {% for bind in binddings %}
                         <tr>
                             <td>{{ bind.id }}</td>
-                            <td>{{bind.name }}</td>
+                            <td>{{ bind.name }}</td>
                             <td>
                                 <button type="button" class="uk-button uk-button-danger" onclick="delBind('{{ bind.id }}')" >ลบ</button>
                             </td>
@@ -139,6 +140,7 @@
                                 <tbody  class="uk-text-center">
                                     <form method="POST" action="" >
                                         <input type="text" name="type"  value="post" hidden>
+                                        <input type="text" name="cmd"  value="pubilsher" hidden>
                                         <tr>
                                             {% csrf_token %}
                                             <td> ID is Auto Increatment  </td>
